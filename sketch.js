@@ -4,8 +4,8 @@ var database;
 var food, foodStock,foodS;
 
 function preload() {
-  dogImg = loadImage('images/dogImg.png');
-  happyDogImg = loadImage('images/dogImg1.png')
+  dogImg = loadImage("Dog.png");
+  happyDogImg = loadImage("happydog.png");
 }
 
 
@@ -16,9 +16,9 @@ function setup() {
   
   foodStock = 0;
 
-  // database = firebase.database();
-  // foodStock=database.ref('food');
-  // foodStock.on("value",readStock);
+   database = firebase.database();
+   foodStock=database.ref('food');
+   foodStock.on("value",readStock);
 }
 
 
@@ -30,13 +30,15 @@ function draw() {
     }
 
   drawSprites();
-  text("foodstock:"+ foodStock,170,200);
+  
   //add styles here
 
 }
 //function to read vaules from database
 function readStock(data){
    foodS = data.val();
+   console.log(foodS);
+   text("foodstock:"+ foodS,170,200);
   } 
 //function to write values in database
  function writeStock(x){
